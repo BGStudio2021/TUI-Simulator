@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TUI Simulator</title>
+    <style>
+        @font-face {
+            font-family: 'Moder-DOS-437-2';
+            src: url('Moder-DOS-437-2.ttf') format('truetype');
+        }
+
+        @font-face {
+            font-family: 'Fixedsys';
+            src: url('fixedsys.ttf') format('truetype');
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            background: #000;
+        }
+
+        .screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: grid;
+            width: 100%;
+            height: 100%;
+            align-items: center;
+            justify-items: center;
+            grid-template-columns: repeat(100, 1fr);
+            grid-template-rows: repeat(30, 1fr);
+            cursor: none;
+            user-select: none;
+            font-family: 'Moder-DOS-437-2', 'Fixedsys', sans-serif;
+        }
+
+        .display-unit {
+            width: 100%;
+            height: 100%;
+            display: grid;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            font-size: 20px;
+        }
+
+        .display-unit:hover {
+            filter: invert(1);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="screen"></div>
+    <script>
+        const testStr='Hello, World! ';
+        const screen = document.querySelector(".screen");
+        onload = function () {
+            for (let i = 0; i < 3000; i++) {
+                let div = document.createElement("div");
+                div.classList.add("display-unit");
+                div.style.background = "#000";
+                div.style.color = "#fff";
+                div.innerText = testStr[i % testStr.length];
+                screen.appendChild(div);
+            }
+        };
+        screen.addEventListener('contextmenu', function (e) {
+            e.preventDefault();
+        });
+    </script>
+</body>
+
+</html>
